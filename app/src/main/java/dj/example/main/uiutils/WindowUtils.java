@@ -10,7 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
 
-import dj.example.main.activities.MyApplication;
+import dj.example.main.MyApplication;
 
 
 public class WindowUtils {

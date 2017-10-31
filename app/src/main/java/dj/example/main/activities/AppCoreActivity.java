@@ -15,9 +15,9 @@ import com.androidquery.AQuery;
 import com.androidquery.callback.AjaxCallback;
 import com.androidquery.callback.AjaxStatus;
 
+import dj.example.main.MyApplication;
 import dj.example.main.R;
 import dj.example.main.modules.appupdater.MyAppRaterUpdateHelper;
-import dj.example.main.modules.sociallogins.SocialLoginUtil;
 import dj.example.main.uiutils.ColoredSnackbar;
 import dj.example.main.uiutils.WindowUtils;
 

@@ -4,8 +4,11 @@ import android.content.res.Resources;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
@@ -13,10 +16,10 @@ import android.widget.TextView;
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
 import com.google.android.gms.common.SignInButton;
 
-import dj.example.main.activities.MyApplication;
+import dj.example.main.MyApplication;
 
 /**
- * Created by User on 18-12-2016.
+ * Created by DJphy on 18-12-2016.
  */
 
 public class UiRandomUtils {
@@ -55,5 +58,22 @@ public class UiRandomUtils {
                 return;
             }
         }
+    }
+
+    public void ellipsizeEnd(TextView txtView, String incoming, int maxLength){
+        if (txtView == null || incoming == null)
+            return;
+        if (maxLength == 0 || incoming.length() <= maxLength)
+            txtView.setText(incoming);
+        else {
+            if (incoming.length() > maxLength)
+                txtView.setText(incoming.substring(0, maxLength).concat("..."));
+        }
+    }
+
+    public void underLineText(TextView textview, String textViewtxt){
+        SpannableString content = new SpannableString(textViewtxt);
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        textview.setText(content);
     }
 }

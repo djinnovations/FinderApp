@@ -5,7 +5,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
 
-import dj.example.main.activities.MyApplication;
+import dj.example.main.MyApplication;
 
 public class DisplayProperties {
 

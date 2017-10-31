@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 
-import dj.example.main.activities.MyApplication;
+import dj.example.main.MyApplication;
 
 
 /**

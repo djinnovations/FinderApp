@@ -2,8 +2,6 @@ package dj.example.main.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.view.View;
@@ -14,17 +12,16 @@ import android.widget.RelativeLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+import dj.example.main.MyApplication;
 import dj.example.main.R;
 import dj.example.main.model.NavigationDataObject;
-import dj.example.main.modules.appupdater.MyAppRaterUpdateHelper;
 import dj.example.main.modules.sociallogins.SocialLoginUtil;
 import dj.example.main.redundant.BaseFragment;
-import dj.example.main.uiutils.ColoredSnackbar;
 import dj.example.main.utils.MyPrefManager;
 
 /**
- * Created by User on 10-07-2017.
+ * Created by DJphy on 10-07-2017.
  */
 
 public class TwoTabsBaseActivity extends BaseDrawerActivity {
@@ -32,15 +29,15 @@ public class TwoTabsBaseActivity extends BaseDrawerActivity {
     private BaseFragment activePage;
     private NavigationDataObject activePageData;
     private List<NavigationDataObject> history = new ArrayList<>();
-    @Bind(R.id.disableApp)
+    @BindView(R.id.disableApp)
     View disableApp;
-    @Bind(R.id.progressBar)
+    @BindView(R.id.progressBar)
     ProgressBar progressBar;
-    @Bind(R.id.layoutParent)
+    @BindView(R.id.layoutParent)
     ViewGroup layoutParent;
 
     RelativeLayout rlMain;
-    @Bind(R.id.indicator)
+    @BindView(R.id.indicator)
     View indicator;
 
     public View getPageIndicator() {

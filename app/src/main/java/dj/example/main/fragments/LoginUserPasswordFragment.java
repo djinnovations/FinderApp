@@ -11,13 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import dj.example.main.R;
 import dj.example.main.uiutils.ColoredSnackbar;
 
 /**
- * Created by User on 09-01-2017.
+ * Created by DJphy on 09-01-2017.
  */
 
 public class LoginUserPasswordFragment extends Fragment {
@@ -48,13 +48,12 @@ public class LoginUserPasswordFragment extends Fragment {
         });
     }
 
-    @Bind(R.id.etUserName)
+    @BindView(R.id.etUserName)
     EditText etUserName;
-    @Bind(R.id.etPassword)
+    @BindView(R.id.etPassword)
     EditText etPassword;
-    @Bind(R.id.btnLoginAcct)
+    @BindView(R.id.btnLoginAcct)
     Button btnLoginAcct;
-
 
     private boolean canContinue(){
         return !(TextUtils.isEmpty(etPassword.getText().toString()) || TextUtils.isEmpty(etUserName.getText().toString()));

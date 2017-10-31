@@ -1,14 +1,14 @@
-package dj.example.main.activities;
+package dj.example.main;
 
 import android.app.Application;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import dj.example.main.R;
+import dj.example.main.activities.MainActivity;
+import dj.example.main.activities.WebActivity;
 import dj.example.main.fragments.HomePage;
 import dj.example.main.model.NavigationDataObject;
 

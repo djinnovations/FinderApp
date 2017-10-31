@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryTrans">#553F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimaryDark">#303F9F</color> 382b21
     <color name="colorAccent">#FF4081</color>
 
 
@@ -27,8 +27,23 @@
     <color name="colorAlternateWhite">#f4f4f4</color>
     <color name="colorMaterialBlack">#212121</color>
 
+    <color name="buttonPressBorder">@color/colorPrimaryDark</color>
+    <color name="buttonPressStart">#1c255f</color> <!--4th level from primarydark ascending from hexcolor website -->
+    <color name="buttonPressEnd">#1c255f</color>
+
+    <color name="buttonNormalBorder">#213dA4</color>
+    <color name="buttonNormalStart">#525fb9</color>
+    <color name="buttonNormalEnd">@color/colorPrimaryDark</color>
+
+    <color name="buttonDisableBorder">@color/colorPrimaryDark</color>
+    <color name="buttonDisableStart">#dd1c255f</color>  <!--same as button press with dd level alpha -->
+    <color name="buttonDisableEnd">#dd1c255f</color>
+
     <color name="colorGhostWhite">#e1e1e1</color>
     <color name="colorAppPrimaryBg">#246EFB</color>
     <color name="colorPrimaryPress">#0054a6</color>
+
+    <color name="colorCardBg">#ffffff</color>
+    <color name="colorCourseProgress">#69F0AE</color>
 
 </resources>

@@ -9,23 +9,22 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import dj.example.main.R;
 import dj.example.main.model.NavigationDataObject;
-import dj.example.main.redundant.BaseFragment;
 import dj.example.main.redundant.ApplicationDefaultWebView;
+import dj.example.main.redundant.BaseFragment;
 import dj.example.main.utils.IDUtils;
 
 public class WebActivity extends BaseActivity {
 
     private static final String TAG_CONTACT_US = "goladorn.ContactUs";
     private static final String TAG_PEOPLE = "goladorn.People";
-    @Bind(R.id.mainHolder)
+    @BindView(R.id.mainHolder)
     FrameLayout mainHolder;
 
     @Override

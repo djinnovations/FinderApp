@@ -23,16 +23,16 @@ import com.nshmura.recyclertablayout.RecyclerTabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import dj.example.main.R;
-import dj.example.main.activities.MyApplication;
+import dj.example.main.MyApplication;
 import dj.example.main.activities.TwoTabsBaseActivity;
 import dj.example.main.redundant.BaseFragment;
 
 public class HomePage extends BaseFragment implements ViewPager.OnPageChangeListener{
 
-    @Bind(R.id.disableApp)
+    @BindView(R.id.disableApp)
     View disableApp;
 
     public static final int FILTER_APPLY = 2;
@@ -47,7 +47,7 @@ public class HomePage extends BaseFragment implements ViewPager.OnPageChangeList
 
     }
 
-    @Bind(R.id.viewPager)
+    @BindView(R.id.viewPager)
     ViewPager viewPager;
 
     FragmentStatePagerAdapter pagerAdapter;
@@ -208,8 +208,8 @@ public class HomePage extends BaseFragment implements ViewPager.OnPageChangeList
             super(viewPager);
             //HomePage.viewPager = viewPager;
             dataList.clear();
-            dataList.add("Item-1");
-            dataList.add("Item-2");
+            dataList.add("Courses");
+            dataList.add("Test");
         }
 
         List<String> dataList = new ArrayList<>();
@@ -242,12 +242,12 @@ public class HomePage extends BaseFragment implements ViewPager.OnPageChangeList
 
         public class MyViewHolder extends RecyclerView.ViewHolder {
 
-            @Bind(R.id.textView)
+            @BindView(R.id.textView)
             public TextView textView;
-            @Bind(R.id.selected)
+            @BindView(R.id.selected)
             public View selected;
 
-            @Bind(R.id.tabParent)
+            @BindView(R.id.tabParent)
             RelativeLayout tabParent;
             String data;
 

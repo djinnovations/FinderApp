@@ -26,6 +26,12 @@ public class URLHelper {
         ourInstance = null;
     }
 
+
+    public final String getCourseMediaContentUrl(String courseId){
+        return "blahblah"; //// TODO: 28-10-2017 actual url
+    }
+
+
     private static final class VERB{
 
     }

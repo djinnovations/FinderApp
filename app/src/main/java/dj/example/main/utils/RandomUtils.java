@@ -1,15 +1,26 @@
 package dj.example.main.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
+import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 
-import dj.example.main.activities.MyApplication;
+import com.mikepenz.iconics.IconicsDrawable;
+import com.mikepenz.iconics.typeface.IIcon;
+
+import dj.example.main.MyApplication;
+import dj.example.main.activities.TwoTabsBaseActivity;
+import dj.example.main.uiutils.ResourceReader;
 
 /**
- * Created by User on 08-07-2017.
+ * Created by DJphy on 08-07-2017.
  */
 
 public class RandomUtils {
@@ -48,6 +59,34 @@ public class RandomUtils {
         }
 
         return haveConnectedWifi || haveConnectedMobile;
+    }
+
+
+    public void launchHome(Activity activity){
+        Intent intent = new Intent(activity, TwoTabsBaseActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        activity.startActivity(intent);
+        //finish();
+    }
+
+    public void assignMikePenzIcon(IIcon icoToUSe, View view, int colorRsr){
+        int color = ResourceReader.getInstance().getColorFromResource(colorRsr);
+        Drawable temp = new IconicsDrawable(MyApplication.getInstance())
+                .icon(icoToUSe)
+                .color(color)
+                .sizeDp(20);
+        if (view instanceof ImageView) {
+            ((ImageView) view).setImageDrawable(temp);
+        }
+        if (view instanceof ImageButton){
+            ((ImageButton) view).setImageDrawable(temp);
+        }
+    }
+
+    public static int convertDpToPixel(float dp){
+        Resources resources = MyApplication.getInstance().getResources();
+        DisplayMetrics metrics = resources.getDisplayMetrics();
+        return (int) (dp * ((float)metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT));
     }
 
     public boolean isTablet(Context context) {

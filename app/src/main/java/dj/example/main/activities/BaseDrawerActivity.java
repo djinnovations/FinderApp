@@ -19,20 +19,23 @@ import android.widget.TextView;
 import com.androidquery.callback.AjaxStatus;
 import com.squareup.picasso.Picasso;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import dj.example.main.MyApplication;
 import dj.example.main.R;
 import dj.example.main.model.NavigationDataObject;
+import dj.example.main.model.UserInfo;
+import dj.example.main.utils.UserSession;
 
 /**
  * Created by DJphy
  */
 public abstract class BaseDrawerActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    @Bind(R.id.drawerLayout)
+    @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    @Bind(R.id.vNavigation)
+    @BindView(R.id.vNavigation)
     NavigationView vNavigation;
     Toolbar toolbar;
 
@@ -186,19 +189,29 @@ public abstract class BaseDrawerActivity extends BaseActivity implements Navigat
     protected boolean isPointsUpdateInprogress = false;
 
     private void setupHeader() {
-
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.setDrawerListener(toggle);
         toggle.syncState();
         vNavigation.setNavigationItemSelectedListener(this);
         View headerLayout = vNavigation.getHeaderView(0);
-        //// TODO: 09-07-2017  load name and user images here in silder view 
-        TextView userName = (TextView) headerLayout.findViewById(R.id.userName);
-        userName.setText("DJphy");
+        //// TODO: 09-07-2017  load name and user images here in silder view
         ImageView userImage = (ImageView) headerLayout.findViewById(R.id.userImage);
-        Picasso.with(this).load(R.drawable.vector_icon_profile_white_outline).placeholder(R.drawable
+        Picasso.with(this).load(R.drawable
+                .vector_icon_profile_white_outline).placeholder(R.drawable
                 .vector_icon_profile_white_outline).into(userImage);
+
+        try {
+            UserInfo userInfo = UserSession.getInstance().getUserInfo();
+            TextView userName = (TextView) headerLayout.findViewById(R.id.userName);
+            TextView emailId = (TextView) headerLayout.findViewById(R.id.emailId);
+            userName.setText(userInfo.name);
+            emailId.setText(userInfo.emailId);
+            Picasso.with(this).load(userInfo.profileImgUrl).placeholder(R.drawable
+                    .vector_icon_profile_white_outline).into(userImage);
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
         //User user = getApp().getUser();
         /*if (user != null) {
             userName.setText(user.getName());

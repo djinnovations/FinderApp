@@ -9,15 +9,18 @@ import android.widget.ProgressBar;
 
 import com.androidquery.callback.AjaxStatus;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import dj.example.main.MyApplication;
 import dj.example.main.R;
 import dj.example.main.fragments.SocialLoginFragment;
-import dj.example.main.utils.NetworkResultValidator;
 import dj.example.main.modules.sociallogins.SocialLoginUtil;
+import dj.example.main.utils.MyPrefManager;
+import dj.example.main.utils.NetworkResultValidator;
+import dj.example.main.utils.RandomUtils;
 
 /**
- * Created by User on 25-01-2017.
+ * Created by DJphy on 25-01-2017.
  */
 
 public class LoginActivity extends BaseActivity{
@@ -40,9 +43,9 @@ public class LoginActivity extends BaseActivity{
         return progressBar;
     }
 
-    @Bind(R.id.progressBar)
+    @BindView(R.id.progressBar)
     ProgressBar progressBar;
-    @Bind(R.id.llSocialLoginContainer)
+    @BindView(R.id.llSocialLoginContainer)
     LinearLayout llSocialLoginContainer;
 
     private SocialLoginFragment loginFragment;
@@ -85,16 +88,18 @@ public class LoginActivity extends BaseActivity{
         super.serverCallEnds(id, url, json, status);
         if (id == SOCIAL_LOGIN_CALL){
             try {
-                boolean success = NetworkResultValidator.getInstance().isResultOK(url, (String) json, status, null,
-                        progressBar, this);
+                boolean success = NetworkResultValidator.getInstance().isResultOK((String) json, status, progressBar);
                 if (success) {
+                    MyPrefManager.getInstance().setIsLoginDone(mSocialLoginInstance.getLogin_mode(), true);
                     /*LoginResponse response = new Gson().fromJson((String) json, LoginResponse.class);
                     response.onParse();*/
+                    //// TODO: 01-08-2017
                     return;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            RandomUtils.getInstance().launchHome(this);
             //ColoredSnackbar.alert(Snackbar.make(progressBar, "UNKNOWN_ERR", Snackbar.LENGTH_SHORT)).show();
         }
     }

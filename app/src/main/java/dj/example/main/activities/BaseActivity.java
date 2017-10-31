@@ -23,35 +23,12 @@ import dj.example.main.uiutils.WindowUtils;
 import dj.example.main.utils.IDUtils;
 
 /**
- * Created by User on 25-01-2017.
+ * Created by DJphy on 25-01-2017.
  */
 
 public abstract class BaseActivity extends AppCoreActivity {
 
     private String TAG = "BaseActivity";
-
-    public final int SOCIAL_LOGIN_CALL = IDUtils.generateViewId();
-    public void queryForSocialLogin(JSONObject inputParams){
-        startProgress();
-        AjaxCallback ajaxCallback = getAjaxCallback(SOCIAL_LOGIN_CALL);
-        ajaxCallback.method(AQuery.METHOD_POST);
-        ajaxCallback.header("content-type", "application/json");
-        String url = /*URLHelper.getInstance().getSocialLoginAPI()*/ " "; //// TODO: 08-07-2017  add social login actual API
-        Log.d(TAG, "POST url- queryForSocialLogin()" + TAG + ": " + url);
-        Map<String,Object> params = null;
-        try {
-            params = new ObjectMapper().readValue(inputParams.toString(), HashMap.class);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (params == null){
-            ColoredSnackbar.alert(Snackbar.make(getViewForLayoutAccess(), "Sign in Failed", Snackbar.LENGTH_SHORT)).show();
-            return;
-        }
-        Log.d(TAG, "POST reqParams- queryForSocialLogin()" + TAG + ": " + params);
-        getAQuery().ajax(url, params, String.class, ajaxCallback);
-    }
-
 
     public void setErrMsg(String msg){
         ColoredSnackbar.alert(Snackbar.make(getViewForLayoutAccess(), msg, Snackbar.LENGTH_SHORT)).show();
@@ -82,6 +59,29 @@ public abstract class BaseActivity extends AppCoreActivity {
         ColoredSnackbar.info(Snackbar.make(getViewForLayoutAccess(), msg, Snackbar.LENGTH_SHORT)).show();
     }
 
+
+    public final int SOCIAL_LOGIN_CALL = IDUtils.generateViewId();
+    public void queryForSocialLogin(JSONObject inputParams){
+        startProgress();
+        AjaxCallback ajaxCallback = getAjaxCallback(SOCIAL_LOGIN_CALL);
+        ajaxCallback.method(AQuery.METHOD_POST);
+        ajaxCallback.header("content-type", "application/json");
+        String url = /*URLHelper.getInstance().getSocialLoginAPI()*/ " "; //// TODO: 08-07-2017  add social login actual API
+        Log.d(TAG, "POST url- queryForSocialLogin()" + TAG + ": " + url);
+        Map<String,Object> params = null;
+        try {
+            params = new ObjectMapper().readValue(inputParams.toString(), HashMap.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (params == null){
+            ColoredSnackbar.alert(Snackbar.make(getViewForLayoutAccess(), "Sign in Failed", Snackbar.LENGTH_SHORT)).show();
+            return;
+        }
+        Log.d(TAG, "POST reqParams- queryForSocialLogin()" + TAG + ": " + params);
+        getAQuery().ajax(url, params, String.class, ajaxCallback);
+    }
+
     public final int NORMAL_LOGIN_CALL = IDUtils.generateViewId();
     public void queryForLogin(String userId, String password) {
         startProgress();
@@ -93,6 +93,18 @@ public abstract class BaseActivity extends AppCoreActivity {
         params.put("email", userId);
         params.put("password", password);
         params.put("role", "intern");
+        Log.d(TAG, "POST reqParams- queryForLogin()" + TAG + ": " + params);
+        getAQuery().ajax(url, params, String.class, ajaxCallback);
+    }
+
+
+    public final int MEDIA_CONTENT_CALL = IDUtils.generateViewId();
+    public void queryForMediaContent(String url){
+        startProgress();
+        AjaxCallback ajaxCallback = getAjaxCallback(MEDIA_CONTENT_CALL);
+        ajaxCallback.method(AQuery.METHOD_POST);
+        Log.d(TAG, "POST url- queryForLogin()" + TAG + ": " + url);
+        Map<String, String> params = new HashMap<>();
         Log.d(TAG, "POST reqParams- queryForLogin()" + TAG + ": " + params);
         getAQuery().ajax(url, params, String.class, ajaxCallback);
     }

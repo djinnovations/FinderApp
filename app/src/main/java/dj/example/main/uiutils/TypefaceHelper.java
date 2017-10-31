@@ -16,14 +16,20 @@ import java.util.Map;
  */
 public class TypefaceHelper {
 
-    private static Map<String,Typeface> map = new HashMap<>();
+    public static class FontTypes {
+        public static final String QUICKSAND_REGULAR = "Quicksand-Regular.otf";
+        public static final String SNICKLES = "Snickles.ttf";
+    }
+
+    private static Map<String, Typeface> map = new HashMap<>();
 
     public static void setFont(TextView text, String fontName) {
-        Typeface typeface = getTypeFace(text.getContext(),fontName);
+        Typeface typeface = getTypeFace(text.getContext(), fontName);
         text.setTypeface(typeface);
     }
+
     public static void setFont(TextInputLayout text, String fontName) {
-        Typeface typeface = getTypeFace(text.getContext(),fontName);
+        Typeface typeface = getTypeFace(text.getContext(), fontName);
         text.setTypeface(typeface);
     }
 
@@ -42,32 +48,32 @@ public class TypefaceHelper {
 
         for (int i = 0; i < views.length; i++) {
             view = views[i];
-            if(view instanceof TextView)
-                setFont((TextView)view);
-            else if(view instanceof TextInputLayout)
-                setFont((TextInputLayout)view);
-            else if(view instanceof Spinner)
-                setFont((Spinner)view);
+            if (view instanceof TextView)
+                setFont((TextView) view);
+            else if (view instanceof TextInputLayout)
+                setFont((TextInputLayout) view);
+            else if (view instanceof Spinner)
+                setFont((Spinner) view);
         }
     }
 
     public static void setFont(String fontName, View... views) {
         View view;
-        for (int i = 0; i < views.length; i++) {
-            view = views[i];
-            if(view instanceof TextView)
-                setFont((TextView)view,fontName);
-            else if(view instanceof TextInputLayout)
-                setFont((TextInputLayout)view,fontName);
+        for (View view1 : views) {
+            view = view1;
+            if (view instanceof TextView)
+                setFont((TextView) view, fontName);
+            else if (view instanceof TextInputLayout)
+                setFont((TextInputLayout) view, fontName);
         }
     }
 
 
     public static Typeface getTypeFace(Context context, String fontName) {
         Typeface typeface = map.get(fontName);
-        if(typeface==null) {
+        if (typeface == null) {
             typeface = Typeface.createFromAsset(context.getAssets(), "fonts/" + fontName);
-            map.put(fontName,typeface);
+            map.put(fontName, typeface);
         }
         return typeface;
     }

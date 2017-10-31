@@ -3,10 +3,10 @@ package dj.example.main.utils;
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import dj.example.main.activities.MyApplication;
+import dj.example.main.MyApplication;
 
 /**
- * Created by User on 08-07-2017.
+ * Created by DJphy on 08-07-2017.
  */
 
 public class MyPrefManager {
@@ -26,13 +26,15 @@ public class MyPrefManager {
     private final String KEY_IS_INTIMATION_STOP = "intimation_stat";
     private final String KEY_INTIMATION_COUNT = "intimation_count";
 
+    private static final String KEY_NOTIFICATIONS_FCM = "notifications";
     private final String KEY_IS_APP_RATING_DONE = "app_rating";
     private final String KEY_RATING_SESSION_COUNT = "app_rate_session_count";
     private final String KEY_RATING_IS_DAYS_COUNT_STARTED = "app_rate_day_count";
     private final String KEY_RATING_START_TIME = "app_rate_start_time";
 
     public static final String MODE_NORMAL = "normal";
-    public static final String MODE_SOCIAL = "social";
+    public static final String MODE_SOCIAL_GL = "social_gl";
+    public static final String MODE_SOCIAL_FB = "social_fb";
 
     private MyPrefManager() {
         pref = MyApplication.getInstance().getSharedPreferences(PREF_NAME, PRIVATE_MODE);
@@ -137,5 +139,33 @@ public class MyPrefManager {
 
     private long getStartTimeForRating() {
         return pref.getLong(KEY_RATING_START_TIME, System.currentTimeMillis());
+    }
+
+
+    public void addNotification(String notification) {
+        // get old notifications
+        Log.d(TAG, "add notification: ");
+        String oldNotifications = getNotifications();
+
+        if (oldNotifications != null) {
+            oldNotifications += "|" + notification;
+        } else {
+            oldNotifications = notification;
+        }
+
+        editor.putString(KEY_NOTIFICATIONS_FCM, oldNotifications);
+        editor.commit();
+    }
+
+    public String getNotifications() {
+        Log.d(TAG, "get notification: " + pref.getString(KEY_NOTIFICATIONS_FCM, null));
+        return pref.getString(KEY_NOTIFICATIONS_FCM, null);
+    }
+
+    public void clearNotificationMsgs() {
+        if (pref.contains(KEY_NOTIFICATIONS_FCM)) {
+            editor.remove(KEY_NOTIFICATIONS_FCM);
+            editor.commit();
+        }
     }
 }

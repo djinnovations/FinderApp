@@ -11,14 +11,14 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.SignInButton;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dj.example.main.R;
 import dj.example.main.uiutils.UiRandomUtils;
 
 /**
- * Created by User on 25-01-2017.
+ * Created by DJphy on 25-01-2017.
  */
 
 public class SocialLoginFragment extends Fragment {
@@ -29,11 +29,11 @@ public class SocialLoginFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_login_social, container, false);
     }
 
-    @Bind(R.id.btnFbLogin)
+    @BindView(R.id.btnFbLogin)
     Button btnFbLogin;
-    @Bind(R.id.btnGoogleLogin)
+    @BindView(R.id.btnGoogleLogin)
     SignInButton btnGoogleLogin;
-    @Bind(R.id.tvAcctLogin)
+    @BindView(R.id.tvAcctLogin)
     TextView tvAcctLogin;
 
     @Override

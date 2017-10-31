@@ -11,7 +11,7 @@ import android.widget.TextView;
 import dj.example.main.R;
 
 /**
- * Created by User on 10-07-2017.
+ * Created by DJphy on 10-07-2017.
  */
 
 public class TabFragment2 extends Fragment{

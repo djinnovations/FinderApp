@@ -12,26 +12,26 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import dj.example.main.R;
-import dj.example.main.activities.MyApplication;
+import dj.example.main.MyApplication;
 import dj.example.main.model.CheckboxTitlesData;
 
 /**
- * Created by User on 26-01-2017.
+ * Created by DJphy on 26-01-2017.
  */
 
-public class CheckboxTitleAdapter extends RecyclerView.Adapter<CheckboxTitleAdapter.ViewHolder> implements GenericAdapterInterface{
+public class CheckboxTitleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements GenericAdapterInterface{
 
     List<CheckboxTitlesData> dataList = new ArrayList<>();
     private CheckboxTitlesData previousSelection;
     protected MyApplication.MenuSelectionListener listener;
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(getRootLayout(), parent, false);
-        return new ViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(getRootLayout(viewType), parent, false);
+        return getViewHolder(view, viewType);
     }
 
     public CheckboxTitleAdapter(MyApplication.MenuSelectionListener listener){
@@ -39,7 +39,14 @@ public class CheckboxTitleAdapter extends RecyclerView.Adapter<CheckboxTitleAdap
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holderTemp, int position) {
+        ViewHolder holder = null;
+        try {
+            holder = (ViewHolder) holderTemp;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return;
+        }
         CheckboxTitlesData data = dataList.get(position);
         if (data.isSelected()){
             previousSelection = data;
@@ -55,7 +62,9 @@ public class CheckboxTitleAdapter extends RecyclerView.Adapter<CheckboxTitleAdap
 
     @Override
     public void changeData(List dataList) throws IllegalArgumentException{
-        if (dataList == null || dataList.size() <= 0)
+        if (dataList == null)
+            return;
+        if (dataList.size() <= 0)
             return;
         if (!(dataList.get(0) instanceof CheckboxTitlesData))
             throw new IllegalArgumentException("Required data type \"CheckboxTitlesData\"");
@@ -70,7 +79,7 @@ public class CheckboxTitleAdapter extends RecyclerView.Adapter<CheckboxTitleAdap
     }
 
     @Override
-    public int getRootLayout() {
+    public int getRootLayout(int viewType) {
         return R.layout.adapter_title_checkbox;
     }
 
@@ -79,11 +88,16 @@ public class CheckboxTitleAdapter extends RecyclerView.Adapter<CheckboxTitleAdap
         holder.itemView.setOnClickListener((View.OnClickListener) holder);
     }
 
+    @Override
+    public RecyclerView.ViewHolder getViewHolder(View view, int viewType) {
+        return new ViewHolder(view);
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        @Bind(R.id.tvItem)
+        @BindView(R.id.tvItem)
         TextView tvItem;
-        @Bind(R.id.checkbox)
+        @BindView(R.id.checkbox)
         CheckBox checkBox;
 
         ViewHolder(View itemView) {

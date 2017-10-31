@@ -15,7 +15,7 @@
 
         <Button
             android:id="@+id/nav_home"
-            android:background="@drawable/link_button_bg"
+            android:background="@drawable/bg_slider_menu"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:paddingStart="10dp"
@@ -30,7 +30,7 @@
 
         <Button
             android:id="@+id/nav_menu_1"
-            android:background="@drawable/link_button_bg"
+            android:background="@drawable/bg_slider_menu"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:paddingStart="10dp"
@@ -40,7 +40,7 @@
 
         <Button
             android:id="@+id/nav_menu_2"
-            android:background="@drawable/link_button_bg"
+            android:background="@drawable/bg_slider_menu"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:paddingStart="10dp"
@@ -50,7 +50,7 @@
 
         <Button
             android:id="@+id/nav_menu_3"
-            android:background="@drawable/link_button_bg"
+            android:background="@drawable/bg_slider_menu"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:paddingStart="10dp"
@@ -60,7 +60,7 @@
 
         <Button
             android:id="@+id/nav_menu_4"
-            android:background="@drawable/link_button_bg"
+            android:background="@drawable/bg_slider_menu"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:paddingStart="10dp"
